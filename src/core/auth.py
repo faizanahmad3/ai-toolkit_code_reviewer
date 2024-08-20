@@ -22,5 +22,5 @@ async def get_api_key(api_key_header: str = Security(api_key_header)):
     if api_key_header != FAST_API_KEY:
         warning_logger.warning("Invalid API Key provided.")
         raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail="Invalid API Key")
-    info_logger.info("API Key validated successfully.")
+    info_logger.info("FAST-API-Key validated successfully.")
     return api_key_header

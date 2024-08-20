@@ -25,15 +25,15 @@ analyzer_router = APIRouter()
 @analyzer_router.post("/analyze_code/", dependencies=[Depends(get_api_key)])
 async def analyze_code_files(req: Analyzer) -> Dict:
     try:
-        path = req["files_path"]
+        path = req.files_path
 
-        if req["python"]:
+        if req.python:
             criteria_list = criteria_lists.python_criteria_list
-            file_extension = (".ts", ".html")
-        elif req["angular"]:
-            criteria_list = criteria_lists.angular_criteria_list
             file_extension = (".py", ".ipynb")
-        elif req["react"]:
+        elif req.angular:
+            criteria_list = criteria_lists.angular_criteria_list
+            file_extension = (".ts", ".html")
+        elif req.flutter:
             criteria_list = criteria_lists.flutter_criteria_list
             file_extension = (".dart", ".yaml")
         else:
